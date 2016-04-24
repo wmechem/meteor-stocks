@@ -2,9 +2,15 @@ Meteor.methods({
   getName: function(symbol){
       var data = YahooFinance.snapshot({
         symbols: [symbol],
-        fields: ['n']
+        fields: ['s', 'n']
       });
-      return data[symbol].name;
+      //console.log(data[0].name)
+      
+      if(data[0].name){
+        //console.log('Found name');
+        return data[0].name;};
+      //console.log('Name not found')
+      return 'N/A'
   },
 
   getData: function(symbol){
